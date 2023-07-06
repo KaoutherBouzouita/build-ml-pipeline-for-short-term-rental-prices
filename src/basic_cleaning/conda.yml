@@ -1,6 +1,8 @@
-name: components
+name: basic_cleaning
 channels:
   - conda-forge
   - defaults
 dependencies:
-  - mlflow
+  - pip
+  - pip:
+      - wandb
