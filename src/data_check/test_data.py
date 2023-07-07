@@ -4,7 +4,6 @@ import scipy.stats
 
 
 def test_column_names(data):
-
     expected_colums = [
         "id",
         "name",
@@ -31,7 +30,6 @@ def test_column_names(data):
 
 
 def test_neighborhood_names(data):
-
     known_names = ["Bronx", "Brooklyn", "Manhattan", "Queens", "Staten Island"]
 
     neigh = set(data['neighbourhood_group'].unique())
@@ -65,4 +63,4 @@ def test_row_count(data):
 
 
 def test_price_range(data, min_price, max_price):
-    assert data['price'].between(min_price, max_price)
+    assert data['price'].between(min_price, max_price).all()

@@ -4,5 +4,6 @@ channels:
   - defaults
 dependencies:
   - pip
+  - pandas
   - pip:
       - wandb
