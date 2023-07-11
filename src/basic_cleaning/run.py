@@ -5,6 +5,10 @@ exporting the result to a new artifact
 """
 import argparse
 import logging
+
+import hydra
+from omegaconf import DictConfig
+
 import wandb
 import pandas as pd
 
@@ -12,7 +16,8 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
 logger = logging.getLogger()
 
 
-def go(args):
+@hydra.main(config_name='config')
+def go(args, config: DictConfig):
     run = wandb.init(job_type="basic_cleaning")
     run.config.update(args)
 
@@ -39,8 +44,11 @@ def go(args):
 
     logger.info("Converting result to CSV file...")
 
-    idx = df['longitude'].between(-74.25, -
-                                  73.50) & df['latitude'].between(40.5, 41.2)
+    idx = df['longitude'].between(
+        config["data_check"]["min_longitude"],
+        config["data_check"]["max_longitude"]) & df['latitude'].between(
+        config["data_check"]["min_latitude"],
+        config["data_check"]["max_latitude"])
     df = df[idx].copy()
 
     df.to_csv(args.output_artifact, index=False)

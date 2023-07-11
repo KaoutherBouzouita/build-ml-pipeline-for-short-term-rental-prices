@@ -157,7 +157,21 @@ pipelines, during the data exploration phase.
    profile = ydata_profiling.ProfileReport(df)
    profile.to_widgets()
    ```
-   Data analysis is made easier using such a report.
+   Data analysis is made easier using such a report. It provides:
+* Overview
+
+![img_6.png](screenshots/img_6.png)   
+* Variables
+
+![img_7.png](screenshots/img_7.png)
+* Correlations
+
+![img_8.png](screenshots/img_8.png)   
+* Missing Values
+
+![img_9.png](screenshots/img_9.png)   
+
+and many other statistics.
 
 ## Data cleaning
 
@@ -202,6 +216,9 @@ You can safely ignore the following DeprecationWarning if you see it:
 DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' 
 is deprecated since Python 3.3, and in 3.10 it will stop working
 ```
+Logs of data checks can be checked in W&B, under ``Logs`` tag:
+
+![img_10.png](screenshots/img_10.png)
 
 ### Data splitting
 The component ``train_val_test_split`` extracts and segregates the test set. 
