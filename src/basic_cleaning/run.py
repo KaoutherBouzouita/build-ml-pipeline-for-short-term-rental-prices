@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 """
-Download from W&B the raw dataset and apply some basic data cleaning, exporting the result to a new artifact
+Download from W&B the raw dataset and apply some basic data cleaning,
+exporting the result to a new artifact
 """
 import argparse
 import logging
@@ -15,9 +16,7 @@ def go(args):
     run = wandb.init(job_type="basic_cleaning")
     run.config.update(args)
 
-    # Download input artifact. This will also log that this script is using this
-    # particular version of the artifact
-
+    # Download input artifact.
     logger.info("Downloading input artifact...")
 
     run = wandb.init(project="nyc_airbnb", group="eda")
@@ -40,7 +39,8 @@ def go(args):
 
     logger.info("Converting result to CSV file...")
 
-    idx = df['longitude'].between(-74.25, -73.50) & df['latitude'].between(40.5, 41.2)
+    idx = df['longitude'].between(-74.25, -
+                                  73.50) & df['latitude'].between(40.5, 41.2)
     df = df[idx].copy()
 
     df.to_csv(args.output_artifact, index=False)

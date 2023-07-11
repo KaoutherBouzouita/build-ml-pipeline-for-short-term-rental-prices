@@ -19,8 +19,7 @@ def go(args):
     run = wandb.init(job_type="train_val_test_split")
     run.config.update(args)
 
-    # Download input artifact. This will also note that this script is using this
-    # particular version of the artifact
+    # Download input artifact.
     logger.info(f"Fetching artifact {args.input}")
     artifact_local_path = run.use_artifact(args.input).file()
 
@@ -56,16 +55,23 @@ if __name__ == "__main__":
     parser.add_argument("input", type=str, help="Input artifact to split")
 
     parser.add_argument(
-        "test_size", type=float, help="Size of the test split. Fraction of the dataset, or number of items"
-    )
+        "test_size",
+        type=float,
+        help="Size of the test split. Fraction of the dataset, or number of items")
 
     parser.add_argument(
-        "--random_seed", type=int, help="Seed for random number generator", default=42, required=False
-    )
+        "--random_seed",
+        type=int,
+        help="Seed for random number generator",
+        default=42,
+        required=False)
 
     parser.add_argument(
-        "--stratify_by", type=str, help="Column to use for stratification", default='none', required=False
-    )
+        "--stratify_by",
+        type=str,
+        help="Column to use for stratification",
+        default='none',
+        required=False)
 
     args = parser.parse_args()
 
